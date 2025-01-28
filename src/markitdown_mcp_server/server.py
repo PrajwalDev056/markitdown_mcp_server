@@ -9,8 +9,8 @@ PROMPTS = {
         description="Convert document to markdown format using MarkItDown",
         arguments=[
             types.PromptArgument(
-                name="file_content",
-                description="Base64 encoded file content",
+                name="file_path",
+                description="A URI to any document or file",
                 required=True,
             )
         ],
