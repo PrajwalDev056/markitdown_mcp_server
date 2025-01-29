@@ -1,5 +1,7 @@
 # MarkItDown MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@KorigamiK/markitdown_mcp_server)](https://smithery.ai/server/@KorigamiK/markitdown_mcp_server)
+
 A Model Context Protocol (MCP) server that converts various file formats to Markdown using the MarkItDown utility.
 
 ## Supported Formats
@@ -15,6 +17,16 @@ A Model Context Protocol (MCP) server that converts various file formats to Mark
 - ZIP files (iterates over contents)
 
 ## Installation
+
+### Installing via Smithery
+
+To install MarkItDown MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@KorigamiK/markitdown_mcp_server):
+
+```bash
+npx -y @smithery/cli install @KorigamiK/markitdown_mcp_server --client claude
+```
+
+### Manual Installation
 
 1. Clone this repository
 2. Install dependencies:
