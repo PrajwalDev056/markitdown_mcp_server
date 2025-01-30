@@ -48,10 +48,10 @@ async def get_prompt(
         if not arguments:
             raise ValueError("Arguments required")
 
-        file_path = arguments.get("file_content")
+        file_path = arguments.get("file_path")
 
         if not file_path:
-            raise ValueError("file_content is required")
+            raise ValueError("file_path is required")
 
         try:
             markdown_title, markdown_content = convert_to_markdown(file_path)
