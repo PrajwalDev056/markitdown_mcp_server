@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "korigamik-hypr", email = "korigamik@gmail.com" }
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "markitdown>=0.0.1a3",
     "mcp>=1.2.1",
