@@ -4,6 +4,8 @@
 
 A Model Context Protocol (MCP) server that converts various file formats to Markdown using the MarkItDown utility.
 
+<a href="https://glama.ai/mcp/servers/sbc6bljjg5"><img width="380" height="200" src="https://glama.ai/mcp/servers/sbc6bljjg5/badge" alt="MarkItDown Server MCP server" /></a>
+
 ## Supported Formats
 
 - PDF
