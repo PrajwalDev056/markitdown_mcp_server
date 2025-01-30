@@ -24,7 +24,7 @@ COPY src /app/src
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --no-editable
 
-FROM python:3.13-slim
+FROM python:3.13-bookworm
 
 WORKDIR /app
  
