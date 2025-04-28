@@ -1,7 +1,9 @@
-from mcp.server import Server, stdio, models, NotificationOptions
+from os import listdir
+from typing import Tuple
+
 import mcp.types as types
 from markitdown import MarkItDown
-from typing import Tuple
+from mcp.server import NotificationOptions, Server, models, stdio
 
 PROMPTS = {
     "md": types.Prompt(
@@ -14,7 +16,18 @@ PROMPTS = {
                 required=True,
             )
         ],
-    )
+    ),
+    "ls": types.Prompt(
+        name="ls",
+        description="list files in a directory",
+        arguments=[
+            types.PromptArgument(
+                name="directory",
+                description="directory to list files",
+                required=True,
+            )
+        ],
+    ),
 }
 
 
@@ -71,6 +84,56 @@ async def get_prompt(
         except Exception as e:
             raise ValueError(f"Error processing document: {str(e)}")
 
+    elif name == "ls":
+        try:
+            directory = arguments["directory"]
+            files = listdir(directory)
+
+            # Format the output in a structured, informative way
+            file_count = len(files)
+            formatted_output = f"Directory listing for: {directory}\n"
+            formatted_output += f"Total files: {file_count}\n\n"
+
+            # Group files by type if possible
+            extensions = {}
+            no_extension = []
+
+            for file in files:
+                if "." in file:
+                    ext = file.split(".")[-1].lower()
+                    if ext not in extensions:
+                        extensions[ext] = []
+                    extensions[ext].append(file)
+                else:
+                    no_extension.append(file)
+
+            # Add file groupings to output
+            if extensions:
+                formatted_output += "Files by type:\n"
+                for ext, files_of_type in extensions.items():
+                    formatted_output += f"- {ext.upper()} files ({len(files_of_type)}): {', '.join(files_of_type)}\n"
+
+            if no_extension:
+                formatted_output += f"\nFiles without extension ({len(no_extension)}): {', '.join(no_extension)}\n"
+
+            # Add complete listing
+            formatted_output += "\nComplete file listing:\n"
+            for idx, file in enumerate(sorted(files), 1):
+                formatted_output += f"{idx}. {file}\n"
+
+            return types.GetPromptResult(
+                messages=[
+                    types.PromptMessage(
+                        role="user",
+                        content=types.TextContent(
+                            type="text",
+                            text=formatted_output,
+                        ),
+                    )
+                ]
+            )
+        except Exception as e:
+            raise ValueError(f"Error listing directory: {str(e)}")
     raise ValueError("Prompt implementation not found")
 
 
