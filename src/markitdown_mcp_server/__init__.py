@@ -4,5 +4,7 @@ import asyncio
 
 
 def main() -> None:
-    os.system("notify-send 'Parseer server started'")
+    # Cross-platform notification (skip on Windows)
+    if os.name != 'nt':  # Not Windows
+        os.system("notify-send 'Parseer server started'")
     asyncio.run(run())

@@ -1,0 +1,16 @@
+# Test Document for MarkItDown MCP
+
+This is a test document to verify that the MarkItDown MCP server is working correctly in Cursor.
+
+## Features to Test:
+- Text conversion
+- Basic formatting
+- File processing
+
+## Sample Content:
+- Item 1: Basic text processing
+- Item 2: Format preservation
+- Item 3: MCP integration
+
+This document should be convertible to Markdown format using the /md command in Cursor.
+
